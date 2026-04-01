@@ -1,16 +1,11 @@
+import React from "react";
+import { SafeAreaView } from "react-native";
+import MeuApp from "./BackEnd/app"; // importa o seu app.js
 
-// app.js
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.json()); // para receber JSON no body
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Servidor rodando -- olá, backend!' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor escutando na porta ${PORT}`);
-});
-
+export default function App() {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <MeuApp />
+    </SafeAreaView>
+  );
+}
