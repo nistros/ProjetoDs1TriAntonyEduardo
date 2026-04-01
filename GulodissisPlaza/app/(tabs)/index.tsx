@@ -7,7 +7,13 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 
+import React, { useState } from "react";
+import { View, Text, TextInput, Button } from "react-native";
+
 export default function HomeScreen() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -16,9 +22,44 @@ export default function HomeScreen() {
           source={require('@/assets/images/GulososPlazaIcon.png')}
           style={styles.reactLogo}
         />
-      }>
+      }
+    >
+      {/* Parte visual do formulário */}
+      <View style={{ padding: 20 }}>
+        <Text style={{ fontSize: 18, marginBottom: 8 }}>Nome:</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Digite seu nome"
+          style={{
+            borderWidth: 1,
+            borderColor: "#ccc",
+            marginBottom: 16,
+            padding: 10,
+            borderRadius: 5,
+          }}
+        />
 
-          
+        <Text style={{ fontSize: 18, marginBottom: 8 }}>Email:</Text>
+        <TextInput
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Digite seu email"
+          keyboardType="email-address"
+          style={{
+            borderWidth: 1,
+            borderColor: "#ccc",
+            marginBottom: 16,
+            padding: 10,
+            borderRadius: 5,
+          }}
+        />
+
+        <Button title="Buscar dados (GET)" onPress={() => {}} />
+        <View style={{ marginTop: 10 }}>
+          <Button title="Enviar formulário (POST)" onPress={() => {}} />
+        </View>
+      </View>
     </ParallaxScrollView>
   );
 }
