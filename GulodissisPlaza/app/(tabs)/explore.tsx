@@ -1,13 +1,10 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
-import { IconSymbol } from '@/components/ui/icon-symbol';
 
 export default function TabTwoScreen() {
   return (
@@ -20,6 +17,7 @@ export default function TabTwoScreen() {
           contentFit="contain"
         />
       }>
+      
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
@@ -30,8 +28,21 @@ export default function TabTwoScreen() {
         </ThemedText>
       </ThemedView>
 
-      <ThemedText>
-        A seguir nossas mais gulosas opções.
+      <ThemedText style={styles.subtitle}>
+        A seguir nossas mais gulosas opções:
+      </ThemedText>
+
+      <ThemedText style={styles.item}>
+        🍕 Margherita - molho de tomate, mussarela e manjericão
+      </ThemedText>
+      <ThemedText style={styles.item}>
+        🍕 Calabresa - calabresa fatiada, cebola e mussarela
+      </ThemedText>
+      <ThemedText style={styles.item}>
+        🍕 Quatro Queijos - mussarela, gorgonzola, parmesão e provolone
+      </ThemedText>
+      <ThemedText style={styles.item}>
+        🍕 Portuguesa - presunto, ovo, cebola, pimentão e azeitona
       </ThemedText>
     </ParallaxScrollView>
   );
@@ -47,9 +58,18 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center', 
     gap: 8,
-  }
-
-  
+    marginBottom: 10,
+  },
+  subtitle: {
+    textAlign: 'center',
+    marginBottom: 20,
+    fontSize: 18,
+  },
+  item: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
 });
