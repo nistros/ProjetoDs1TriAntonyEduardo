@@ -48,31 +48,24 @@ export default function HomeScreen() {
     >
       {/* Parte visual do formulário */}
       <View style={{ padding: 20 }}>
-        <Text style={{ fontSize: 18, marginBottom: 8 }}>Nome:</Text>
+        <Text style={styles.label}>Nome:</Text>
         <TextInput
           value={name}
           onChangeText={setName}
           placeholder="Digite seu nome"
+          placeholderTextColor="#aaa"
           style={styles.input}
         />
 
-        <Text style={{ fontSize: 18, marginBottom: 8 }}>Email:</Text>
-        <Text style={{ fontSize: 18, marginBottom: 8, color: "#fff" }}>Nome:</Text>
-<TextInput
-  value={name}
-  onChangeText={setName}
-  placeholder="Digite seu nome"
-  placeholderTextColor="#aaa"
-  style={{
-    borderWidth: 1,
-    borderColor: "#ccc",
-    marginBottom: 16,
-    padding: 10,
-    borderRadius: 5,
-    color: "#fff", // cor do texto digitado
-  }}
-/>
-
+        <Text style={styles.label}>Email:</Text>
+        <TextInput
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Digite seu email"
+          placeholderTextColor="#aaa"
+          keyboardType="email-address"
+          style={styles.input}
+        />
 
         <Button title="Buscar dados (GET)" onPress={fetchData} />
         <View style={{ marginTop: 10 }}>
@@ -84,12 +77,18 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  label: {
+    fontSize: 18,
+    marginBottom: 8,
+    color: "#fff", // cor da fonte
+  },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
     marginBottom: 16,
     padding: 10,
     borderRadius: 5,
+    color: "#fff", // texto digitado
   },
   reactLogo: {
     height: '95%',
@@ -98,5 +97,4 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
-
 });
