@@ -28,6 +28,12 @@ export default function TabTwoScreen() {
         </ThemedText>
       </ThemedView>
 
+      <Image
+        source={require('@/assets/images/pizzaprimex.png')}
+        style={styles.backgroundPizza}
+        contentFit="cover"
+      />
+
       <ThemedText style={styles.subtitle}>
         A seguir nossas mais gulosas opções:
       </ThemedText>
@@ -71,5 +77,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
     textAlign: 'center',
+  },
+  backgroundPizza: {
+    position: 'absolute',
+    right: 85,     
+    top: 100,   
+    width: 200,       
+    height: 201,
+    opacity: 0.2,     
   },
 });
