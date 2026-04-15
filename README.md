@@ -20,3 +20,21 @@ link da documentação complementer: https://docs.google.com/document/d/1i0QC6Wu
 *Paulo*: Problemas entendendo a utilização da API, e visualização de suas responsabilidades. <br>
 *Emanuel*: Problemas com POSTman e entendimento dos conceitos já abordados. <br>
 
+
+# Programação Mobile : 
+
+**Funções e responsabilidades (irá ser feito)** <br>
+*Antony*: Estilização e confecção da parte de login, adicionando um pop-up. <br>
+*Paulo*: Fazer a parte de visualização de pedidos, e a estilização da página explore. <br>
+*Emanuel*: Auxiliar na visualização das páginas. <br>
+
+
+**O que já foi realizado** <br>
+*Antony*: Parte visual de login praticamente pronta, atenuar funções. <br>
+*Paulo*: Tem customizado a parte visual do explore, trocando ícones e o plano de fundo. <br>
+*Emanuel*: Ajudou na estilização da página explore. <br>
+
+**Problemas enfrentados**<br>
+*Antony*: Tenho tido problemas durante o entendimento dos componentes. <br>
+*Paulo*: Problemas estilizando e melhorando a visualização da página. <br>
+*Emanuel*: Problemas com a utilização da linguagem .tsx, contando com muitos erros. <br>
