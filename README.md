@@ -10,11 +10,13 @@ link da documentação complementer: https://docs.google.com/document/d/1i0QC6Wu
 *Emanuel*: Alinhar as rotas e os arquivos da API's. <br>
 
 
-**O que já foi realizado**
-*Antony*: 
-
+**O que já foi realizado** <br>
+*Antony*: Criei o esqueleto da Api e alinhei as ideias. <br>
+*Paulo*: Realizou a parte básica da Api, e já consegue rodar o server. <br>
+*Emanuel*: Ajudou no entendimento da Api. <br>
 
 **Problemas enfrentados**<br>
 *Antony*: Não consegui realizar 100% a parte da API, tenho tido problemas entendo os conceitos já existentes, como rotas, até a nomenclatura básica dos arquivos, tem causado confusão e atrapalhado meu desenvolvimento. <br>
 *Paulo*: Problemas entendendo a utilização da API, e visualização de suas responsabilidades. <br>
 *Emanuel*: Problemas com POSTman e entendimento dos conceitos já abordados. <br>
+
