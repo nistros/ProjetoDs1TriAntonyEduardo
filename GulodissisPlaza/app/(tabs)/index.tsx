@@ -34,7 +34,7 @@ export default function HomeScreen() {
     } catch (error: any) {
       Alert.alert("Erro ao enviar formulário", error.message);
     }
-  };
+  }; 
 
   return (
     <ParallaxScrollView
@@ -67,7 +67,7 @@ export default function HomeScreen() {
           style={styles.input}
         />
 
-        <Button title="Buscar dados (GET)" onPress={fetchData} />
+        <Button title="Login" onPress={fetchData} />
         <View style={{ marginTop: 10 }}>
           <Button title="Enviar formulário (POST)" onPress={sendForm} />
         </View>
