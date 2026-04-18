@@ -38,3 +38,21 @@ link da documentação complementer: https://docs.google.com/document/d/1i0QC6Wu
 *Antony*: Tenho tido problemas durante o entendimento dos componentes. <br>
 *Paulo*: Problemas estilizando e melhorando a visualização da página. <br>
 *Emanuel*: Problemas com a utilização da linguagem .tsx, contando com muitos erros. <br>
+
+# Programação DS : 
+
+**Funções e responsabilidades (irá ser feito)** <br>
+*Antony*: testes em relação a página de login. <br>
+*Paulo*: testes em relação a página explore, dos pedidos. <br>
+*Emanuel*: Auxiliar na coordenação de resultados. <br>
+
+
+**O que já foi realizado** <br>
+*Antony*: Nada. <br>
+*Paulo*: Nada. <br>
+*Emanuel*: Nada . <br>
+
+**Problemas enfrentados**<br>
+*Antony*: Entendimento da utilização. <br>
+*Paulo*: Problemas com a linguagem utilizada. <br>
+*Emanuel*: Problemas com o entendimento do conteúdo. <br>
