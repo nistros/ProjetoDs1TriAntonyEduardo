@@ -1,0 +1,16 @@
+{
+  "clientes": [
+    {
+      "nome": "antony",
+      "id": 1777558692876
+    }
+  ],
+  "chefs": [
+    {
+      "email": "Antonykloss7@gmail.com",
+      "senha": "Gisele38@",
+      "id": 1777558715355
+    }
+  ],
+  "menu": []
+}
