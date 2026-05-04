@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert, StyleSheet, Modal } from "react-native";
 import { useRouter } from "expo-router";
+import { Image } from "expo-image";
+import ParallaxScrollView from "@/components/parallax-scroll-view";
 
-// Como você está no PC, usamos localhost na porta 3000
 const API_URL = "http://localhost:3000";
-import headerImage from './assets/images/GulososPlazaIcon.png';
+
 export default function HomeScreen() {
   const [role, setRole] = useState<"cliente" | "chef">("cliente");
   const [name, setName] = useState("");
@@ -16,9 +17,6 @@ export default function HomeScreen() {
 
   const router = useRouter();
 
- 
-  const bannerImage = {  };
-  // Função para Entrar (Login ou Identificação de Cliente)
   const entrar = async () => {
     try {
       if (role === "cliente") {
@@ -32,7 +30,6 @@ export default function HomeScreen() {
 
         if (response.ok) router.push("/explore");
         else Alert.alert("Erro", "Não foi possível registrar o cliente");
-
       } else {
         if (!email || !senha) return Alert.alert("Erro", "Digite email e senha");
 
@@ -55,7 +52,6 @@ export default function HomeScreen() {
     }
   };
 
-  // Registrar chef
   const registrarChef = async () => {
     if (!newEmail || !newSenha) return Alert.alert("Erro", "Preencha email e senha");
     try {
@@ -77,7 +73,16 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: "#D0D0D0", dark: "#000000" }}
+      headerImage={
+        <Image
+          source={require("../../assets/images/GulososPlazaIcon.png")}
+          style={styles.headerImage}
+          contentFit="contain"
+        />
+      }
+    >
       <Text style={styles.title}>Sistema de Pizzaria</Text>
 
       <View style={styles.roleButtons}>
@@ -123,7 +128,6 @@ export default function HomeScreen() {
 
       <Button title={role === "cliente" ? "Entrar como Cliente" : "Login Chef"} onPress={entrar} color="#28a745" />
 
-      {/* Modal de registro de chef */}
       <Modal visible={showRegister} animationType="slide" transparent>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
@@ -150,12 +154,18 @@ export default function HomeScreen() {
           </View>
         </View>
       </Modal>
-    </View>
+    </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#000" },
+  headerImage: {
+    width: "100%",
+    height: "100%",
+    bottom: 0,
+    left: 0,
+    position: "absolute",
+  },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, color: "#fff", textAlign: "center" },
   roleButtons: { flexDirection: "row", justifyContent: "space-around", marginBottom: 30 },
   label: { fontSize: 16, marginBottom: 8, color: "#fff" },
@@ -179,6 +189,6 @@ const styles = StyleSheet.create({
     padding: 25,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#333"
+    borderColor: "#333",
   },
 });
