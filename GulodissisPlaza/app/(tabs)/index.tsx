@@ -87,7 +87,7 @@ export default function HomeScreen() {
 
       <View style={styles.roleButtons}>
         <Button title="Sou Cliente" color={role === "cliente" ? "#ffca28" : "#ccc"} onPress={() => setRole("cliente")} />
-        <Button title="Sou Chef" color={role === "chef" ? "#ffca28" : "#ccc"} onPress={() => setRole("chef")} />
+        <Button title="Sou Chef" testID="btnCliente" color={role === "chef" ? "#ffca28" : "#ccc"} onPress={() => setRole("chef")} />
       </View>
 
       {role === "cliente" ? (
