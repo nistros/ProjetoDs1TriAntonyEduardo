@@ -1,9 +1,0 @@
-{
-    "menu": [
-      { "id": 1, "name": "Margherita", "ingredients": "molho de tomate, mussarela e manjericão" },
-      { "id": 2, "name": "Calabresa", "ingredients": "calabresa fatiada, cebola e mussarela" },
-      { "id": 3, "name": "Quatro Queijos", "ingredients": "mussarela, gorgonzola, parmesão e provolone" },
-      { "id": 4, "name": "Portuguesa", "ingredients": "presunto, ovo, cebola, pimentão e azeitona" }
-    ]
-  }
-  
