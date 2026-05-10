@@ -1,22 +1,9 @@
 [
-    {
-      "id": 1,
-      "nome": "Margherita",
-      "descricao": "molho de tomate, mussarela e manjericão"
-    },
-    {
-      "id": 2,
-      "nome": "Calabresa",
-      "descricao": "calabresa fatiada, cebola e mussarela"
-    },
-    {
-      "id": 3,
-      "nome": "Quatro Queijos",
-      "descricao": "mussarela, gorgonzola, parmesão e provolone"
-    },
-    {
-      "id": 4,
-      "nome": "Portuguesa",
-      "descricao": "presunto, ovo, cebola, pimentão e azeitona"
-    }
-  ]
+  {
+    "id": 1,
+    "titulo": "Margherita",
+    "descricao": "Molho de tomate e queijo",
+    "preco": "49.90",
+    "imagem": "https://static.itdg.com.br/images/640-440/9dd5d4d4ac77d16df0b7493e7d4f6f7f/318455-original.jpg"
+  }
+]

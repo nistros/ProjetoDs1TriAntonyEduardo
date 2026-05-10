@@ -1,5 +1,14 @@
 import { Image } from 'expo-image';
-import { StyleSheet } from 'react-native';
+
+import {
+  StyleSheet,
+  TextInput,
+  Button,
+} from 'react-native';
+
+import { useEffect, useState } from 'react';
+
+import { useLocalSearchParams } from "expo-router";
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
@@ -7,9 +16,76 @@ import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 
 export default function TabTwoScreen() {
+
+  const { role } = useLocalSearchParams();
+
+  const [cardapio, setCardapio] = useState<any[]>([]);
+
+  const [titulo, setTitulo] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [preco, setPreco] = useState('');
+  const [imagem, setImagem] = useState('');
+
+  useEffect(() => {
+    carregarCardapio();
+  }, []);
+
+  async function carregarCardapio() {
+
+    const response = await fetch(
+      'http://localhost:3001/cardapio'
+    );
+
+    const data = await response.json();
+
+    setCardapio(data);
+  }
+
+  async function adicionarPizza() {
+
+    await fetch('http://localhost:3001/cardapio', {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({
+        titulo,
+        descricao,
+        preco,
+        imagem,
+      }),
+    });
+
+    carregarCardapio();
+
+    setTitulo('');
+    setDescricao('');
+    setPreco('');
+    setImagem('');
+  }
+
+  async function deletarPizza(id: number) {
+
+    await fetch(
+      `http://localhost:3001/cardapio/${id}`,
+      {
+        method: 'DELETE',
+      }
+    );
+
+    carregarCardapio();
+  }
+
   return (
+
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#000000' }}
+      headerBackgroundColor={{
+        light: '#D0D0D0',
+        dark: '#000000',
+      }}
+
       headerImage={
         <Image
           source={require('@/assets/images/GulososPlazaIcon.png')}
@@ -17,8 +93,8 @@ export default function TabTwoScreen() {
           contentFit="contain"
         />
       }>
-      
-      <ThemedView style={styles.titleContainer}>\
+
+      <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
           style={{
@@ -28,33 +104,90 @@ export default function TabTwoScreen() {
         </ThemedText>
       </ThemedView>
 
-      <Image
-        source={require('@/assets/images/pizzaprimex.png')}
-        style={styles.backgroundPizza}
-        contentFit="cover"
-      />
+      {role === 'chef' && (
 
-      <ThemedText style={styles.subtitle}>
-        A seguir nossas mais gulosas opções:
-      </ThemedText>
+        <>
 
-      <ThemedText style={styles.item}>
-        🍕 Margherita - molho de tomate, mussarela e manjericão
-      </ThemedText>
-      <ThemedText style={styles.item}>
-        🍕 Calabresa - calabresa fatiada, cebola e mussarela
-      </ThemedText>
-      <ThemedText style={styles.item}>
-        🍕 Quatro Queijos - mussarela, gorgonzola, parmesão e provolone
-      </ThemedText>
-      <ThemedText style={styles.item}>
-        🍕 Portuguesa - presunto, ovo, cebola, pimentão e azeitona
-      </ThemedText>
+          <TextInput
+            placeholder="Título"
+            value={titulo}
+            onChangeText={setTitulo}
+            style={styles.input}
+          />
+
+          <TextInput
+            placeholder="Descrição"
+            value={descricao}
+            onChangeText={setDescricao}
+            style={styles.input}
+          />
+
+          <TextInput
+            placeholder="Preço"
+            value={preco}
+            onChangeText={setPreco}
+            style={styles.input}
+          />
+
+          <TextInput
+            placeholder="URL da imagem"
+            value={imagem}
+            onChangeText={setImagem}
+            style={styles.input}
+          />
+
+          <Button
+            title="Adicionar Pizza"
+            onPress={adicionarPizza}
+          />
+
+        </>
+
+      )}
+
+      {cardapio.map((pizza) => (
+
+        <ThemedView
+          key={pizza.id}
+          style={styles.card}>
+
+          <Image
+            source={{ uri: pizza.imagem }}
+            style={styles.pizzaImage}
+            contentFit="cover"
+          />
+
+          <ThemedText style={styles.item}>
+            {pizza.titulo}
+          </ThemedText>
+
+          <ThemedText>
+            {pizza.descricao}
+          </ThemedText>
+
+          <ThemedText>
+            R$ {pizza.preco}
+          </ThemedText>
+
+          {role === 'chef' && (
+
+            <Button
+              title="Remover"
+              onPress={() => deletarPizza(pizza.id)}
+            />
+
+          )}
+
+        </ThemedView>
+
+      ))}
+
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+
   headerImage: {
     width: '100%',
     height: '100%',
@@ -62,28 +195,39 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
+
   titleContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     gap: 8,
-    marginBottom: 10,
-  },
-  subtitle: {
-    textAlign: 'center',
     marginBottom: 20,
-    fontSize: 18,
   },
+
+  input: {
+    backgroundColor: '#fff',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+
+  card: {
+    marginTop: 20,
+    padding: 15,
+    borderRadius: 15,
+    backgroundColor: '#222',
+  },
+
+  pizzaImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+
   item: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 10,
     textAlign: 'center',
   },
-  backgroundPizza: {
-    position: 'absolute',
-    right: 85,     
-    top: 100,   
-    width: 200,       
-    height: 201,
-    opacity: 0.2,     
-  },
+
 });

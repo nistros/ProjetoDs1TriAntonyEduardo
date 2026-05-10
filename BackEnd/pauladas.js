@@ -1,95 +1,92 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-let cardapio = require('./empauladas.json');
+const dbPath = path.join(__dirname, "cardapio.json");
+
+if (!fs.existsSync(dbPath)) {
+  fs.writeFileSync(dbPath, JSON.stringify([], null, 2));
+}
+
+function loadDB() {
+  return JSON.parse(fs.readFileSync(dbPath, "utf8"));
+}
+
+function saveDB(data) {
+  fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
+}
 
 
 // =========================
-// GET -> LISTAR CARDÁPIO
+// GET CARDÁPIO
 // =========================
 
-app.get('/cardapio', (req, res) => {
+app.get("/cardapio", (req, res) => {
+
+  const cardapio = loadDB();
+
   res.json(cardapio);
+
 });
 
 
 // =========================
-// POST -> ADICIONAR PIZZA
+// POST PIZZA
 // =========================
 
-app.post('/cardapio', (req, res) => {
+app.post("/cardapio", (req, res) => {
+
+  const cardapio = loadDB();
 
   const novaPizza = {
-    id: cardapio.length + 1,
-    nome: req.body.nome,
-    descricao: req.body.descricao
+    id: Date.now(),
+    titulo: req.body.titulo,
+    descricao: req.body.descricao,
+    preco: req.body.preco,
+    imagem: req.body.imagem,
   };
 
   cardapio.push(novaPizza);
 
+  saveDB(cardapio);
+
   res.status(201).json({
-    mensagem: 'Pizza adicionada com sucesso',
-    pizza: novaPizza
+    message: "Pizza adicionada",
+    pizza: novaPizza,
   });
 
 });
 
 
 // =========================
-// PUT -> EDITAR PIZZA
+// DELETE PIZZA
 // =========================
 
-app.put('/cardapio/:id', (req, res) => {
+app.delete("/cardapio/:id", (req, res) => {
 
-  const id = parseInt(req.params.id);
+  const id = Number(req.params.id);
 
-  const pizza = cardapio.find(item => item.id === id);
+  let cardapio = loadDB();
 
-  if (!pizza) {
-    return res.status(404).json({
-      mensagem: 'Pizza não encontrada'
-    });
-  }
+  cardapio = cardapio.filter(
+    (pizza) => pizza.id !== id
+  );
 
-  pizza.nome = req.body.nome || pizza.nome;
-  pizza.descricao = req.body.descricao || pizza.descricao;
+  saveDB(cardapio);
 
   res.json({
-    mensagem: 'Pizza atualizada com sucesso',
-    pizza
+    message: "Pizza removida",
   });
 
 });
-
-
-// =========================
-// DELETE -> REMOVER PIZZA
-// =========================
-
-app.delete('/cardapio/:id', (req, res) => {
-
-  const id = parseInt(req.params.id);
-
-  cardapio = cardapio.filter(item => item.id !== id);
-
-  res.json({
-    mensagem: 'Pizza removida com sucesso'
-  });
-
-});
-
-
-// =========================
-// SERVIDOR
-// =========================
-
-const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`🍕 Cardápio rodando em http://localhost:${PORT}`);
 });
